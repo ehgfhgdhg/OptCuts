@@ -32,6 +32,14 @@
 #include <string>
 #include <ctime>
 
+#ifdef _WIN32
+#include <direct.h>
+#define MKDIR(path, code) _mkdir(path)
+#else
+#include <sys/stat.h>
+#define MKDIR(path, code) mkdir(path, code)
+#endif
+
 
 Eigen::MatrixXd V, UV, N;
 Eigen::MatrixXi F, FUV, FN;
@@ -1131,7 +1139,7 @@ int main(int argc, char *argv[])
     }
     
     // Optimization mode
-    mkdir(outputFolderPath.c_str(), 0777);
+    MKDIR(outputFolderPath.c_str(), 0777);
     
     std::string meshFileName("cone2.0.obj");
     if(argc > 2) {
@@ -1539,7 +1547,7 @@ int main(int argc, char *argv[])
     // initialize UV
     //////////////////////////////////
     
-    mkdir(outputFolderPath.c_str(), 0777);
+    MKDIR(outputFolderPath.c_str(), 0777);
     outputFolderPath += '/';
     igl::writeOBJ(outputFolderPath + "initial_cuts.obj", triSoup.back()->V_rest, triSoup.back()->F);
     logFile.open(outputFolderPath + "log.txt");

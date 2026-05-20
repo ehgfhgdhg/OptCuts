@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.9)
 project(OptCuts)
+add_compile_definitions(_USE_MATH_DEFINES)
+add_compile_definitions(NOMINMAX)
 
 set(OPTCUTS_EXTERNAL "${CMAKE_CURRENT_SOURCE_DIR}/ext")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)

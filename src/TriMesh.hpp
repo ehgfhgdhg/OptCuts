@@ -13,6 +13,10 @@
 #include <set>
 #include <array>
 
+#ifdef _MSC_VER
+constexpr double __DBL_MAX__ = DBL_MAX;
+#endif
+
 namespace OptCuts{
     
     enum Primitive

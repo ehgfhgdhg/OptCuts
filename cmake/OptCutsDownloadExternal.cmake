@@ -9,6 +9,7 @@ else()
 endif()
 
 function(custom_download_project name)
+  message(STATUS "Download project ${name}")
   download_project(
     PROJ         ${name}
     SOURCE_DIR   ${OPTCUTS_EXTERNAL}/${name}
